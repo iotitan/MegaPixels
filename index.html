@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pixels</title>
+        <style>
+            body {
+                font-family: arial;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Pixels!</h2>
+        <ol>
+            <li>Select settings.</li>
+            <li>Press generate.</li>
+            <li>Profit!</li>
+        </ol>
+
+        <table>
+            <tr>
+                <td><strong>Start color: </strong></td><td><input id="startColor" type="text" /></td>
+            </tr>
+            <tr>
+                <td><strong>End color: </strong></td><td><input id="endColor" type="text" /></td>
+            </tr>
+            <tr>
+                <td><strong>Height: </strong></td><td><input id="pixelRows" type="text" /></td>
+            </tr>
+            <tr>
+                <td><strong>Width: </strong></td><td><input id="pixelCols" type="text" /></td>
+            </tr>
+            <tr>
+                <td><strong>Pixel size: </strong></td><td><input id="pixelSize" type="text" /></td>
+            </tr>
+        </table>
+
+        <br>
+
+        <canvas id="outCanvas"></canvas>
+
+        <script src="./ImageUtils.js"></script>
+        <script>
+            var mOutCanvas = document.getElementById("outCanvas");
+            var mOutCtx = mOutCanvas.getContext("2d");
+
+            var START_COLOR_ID = "startColor";
+            var END_COLOR_ID = "endColor";
+            var PIXEL_ROWS_ID = "pixelRows";
+            var PIXEL_COLS_ID = "pixelCols";
+            var PIXEL_SIZE_ID = "pixelSize";
+
+            function onGeneratePressed(e) {
+                var rows = document.getElementById(PIXEL_ROWS_ID);
+                var cols = document.getElementById(PIXEL_COLS_ID);
+                var pixelSize = document.getElementById(PIXEL_SIZE_ID);
+                var startColor = document.getElementById(START_COLOR_ID);
+                var endColor = document.getElementById(END_COLOR_ID);
+
+                generateImage(rows, cols, pixelSize, startColor, endColor);
+            }
+
+            function generateImage(rows, cols, pixelSize, startColor, endColor) {
+                // Resize the output canvas.
+                mOutCanvas.width = pixelSize * cols;
+                mOutCanvas.height = pixelSize * rows;
+
+                // Create pixel array to work on.
+                var pixelArray = new Array(rows);
+                for (var i = 0; i < rows; i++) {
+                    pixelArray[i] = new Array(cols);
+                }
+            }
+
+            function createColor(r, g, b) {
+                return {"R":r, "G":g, "B":b};
+            }
+
+            document.getElementById("targetFile").addEventListener("change", targetFileUpdated);
+
+        </script>
+    </body>
+</html>
