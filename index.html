@@ -68,6 +68,8 @@
 
                 var imageData = generateImageData(rows, cols, pixelSize, colorList);
 
+                doRowSwap(imageData, 0.50);
+
                 renderImage(imageData, pixelSize);
             }
 
@@ -76,6 +78,17 @@
                     for (var col = 0; col < imageData[row].length; col++) {
                         mOutCtx.fillStyle = colorToHex(imageData[row][col]);
                         mOutCtx.fillRect(col * pixelSize, row * pixelSize, pixelSize, pixelSize);
+                    }
+                }
+            }
+
+            function doRowSwap(imageData, swapProbability) {
+                for (var row = 0; row < imageData.length - 1; row++) {
+                    for (var col = 0; col < imageData[row].length; col++) {
+                        if (Math.random() < swapProbability) continue;
+                        var temp = imageData[row][col];
+                        imageData[row][col] = imageData[row + 1][col];
+                        imageData[row + 1][col] = temp;
                     }
                 }
             }
