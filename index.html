@@ -72,9 +72,9 @@
             }
 
             function renderImage(imageData, pixelSize) {
-                for (var col = 0; col < imageData.length; col++) {
-                    for (var row = 0; row < imageData[col].length; row++) {
-                        mOutCtx.fillStyle = colorToHex(imageData[col][row]);
+                for (var row = 0; row < imageData.length; row++) {
+                    for (var col = 0; col < imageData[row].length; col++) {
+                        mOutCtx.fillStyle = colorToHex(imageData[row][col]);
                         mOutCtx.fillRect(col * pixelSize, row * pixelSize, pixelSize, pixelSize);
                     }
                 }
