@@ -11,12 +11,6 @@
 
     <body>
         <h2>Pixels!</h2>
-        <ol>
-            <li>Select settings.</li>
-            <li>Press generate.</li>
-            <li>Profit!</li>
-        </ol>
-
         <table>
             <tr>
                 <td><strong>Color list (comma separated): </strong></td>
@@ -108,7 +102,7 @@
                     throw "More than two colors are required!";
                 }
 
-                var rowsPerColor = Math.floor(rows / (colorList.length - 1));
+                var rowsPerColor = rows / (colorList.length - 1);
 
                 // Create pixel array to work on.
                 var pixelArray = new Array(rows);
